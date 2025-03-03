@@ -1,6 +1,8 @@
 
 <h1 align="center"><a href="https://heroku.com/deploy?template=https://github.com/trishi880988/Save-Restricted-Content-Bot-V2"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy To Heroku Button"></a></h1>
 
+<h1 align="center"><a href="https://heroku.com/deploy?template=https://github.com/Chiru63019/Save-Restricted-Content-Bot-V2"><img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy To Heroku Button"></a></h1>
+
 <h1 align="center">
   Winter Release v3
 </h1>
