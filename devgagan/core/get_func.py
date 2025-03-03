@@ -204,7 +204,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             if chat in saved_channel_ids:
                 await app.edit_message_text(
                     message.chat.id, edit_id,
-                    "Sorry! This channel is protected by **__Gaurav Rajput__**."
+                    "Sorry! This channel is protected by **__🅲🅷🅸🆁🆄__**."
                 )
                 return
             
@@ -894,7 +894,7 @@ async def handle_large_file(file, sender, edit, caption):
         if freecheck == 1:
             reply_markup = InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("💎 Get Premium to Forward", url="https://t.me/kingofpatal")]
+                    [InlineKeyboardButton("💎 Get Premium to Forward", url="https://t.me/chiru52")]
                 ]
             )
             await app.copy_message(
@@ -1027,7 +1027,7 @@ def progress_callback(done, total, user_id):
         f"│ **__Speed:__** {speed_mbps:.2f} Mbps\n"
         f"│ **__ETA:__** {remaining_time_min:.2f} min\n"
         f"╰──────────────────╯\n\n"
-        f"**__Powered by Team SPY__**"
+        f"**__Powered by Team 🅲🅷🅸🆁🆄__**"
     )
     
     # Update tracking variables for the user
@@ -1090,7 +1090,7 @@ def dl_progress_callback(done, total, user_id):
         f"│ **__Speed:__** {speed_mbps:.2f} Mbps\n"
         f"│ **__ETA:__** {remaining_time_min:.2f} min\n"
         f"╰──────────────────╯\n\n"
-        f"**__Powered by Team SPY__**"
+        f"**__Powered by Team 🅲🅷🅸🆁🆄__**"
     )
     
     # Update tracking variables for the user
