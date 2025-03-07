@@ -63,14 +63,14 @@ async def fetch_upload_method(user_id):
     return user_data.get("upload_method", "Pyrogram") if user_data else "Pyrogram"
 
 async def format_caption_to_html(caption: str) -> str:
-    caption = re.sub(r"^> (.*)", r"<blockquote>\1</blockquote>", caption, flags=re.MULTILINE)
-    caption = re.sub(r"```(.*?)```", r"<pre>\1</pre>", caption, flags=re.DOTALL)
-    caption = re.sub(r"`(.*?)`", r"<code>\1</code>", caption)
-    caption = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", caption)
-    caption = re.sub(r"\*(.*?)\*", r"<b>\1</b>", caption)
-    caption = re.sub(r"__(.*?)__", r"<i>\1</i>", caption)
-    caption = re.sub(r"_(.*?)_", r"<i>\1</i>", caption)
-    caption = re.sub(r"~~(.*?)~~", r"<s>\1</s>", caption)
+    caption = re.sub(r"^> (.*)", r"<blockquote> \1 </blockquote>", caption, flags=re.MULTILINE)
+    caption = re.sub(r"```(.*?)```", r"<pre> \1 </pre>", caption, flags=re.DOTALL)
+    caption = re.sub(r"`(.*?)`", r"<code> \1 </code>", caption)
+    caption = re.sub(r"\*\*(.*?)\*\*", r"<b> \1 </b>", caption)
+    caption = re.sub(r"\*(.*?)\*", r"<b> \1 </b>", caption)
+    caption = re.sub(r"__(.*?)__", r"<i> \1 </i>", caption)
+    caption = re.sub(r"_(.*?)_", r"<i> \1 </i>", caption)
+    caption = re.sub(r"~~(.*?)~~", r"<s> \1 </s>", caption)
     caption = re.sub(r"\|\|(.*?)\|\|", r"<details>\1</details>", caption)
     caption = re.sub(r"\[(.*?)\]\((.*?)\)", r'<a href="\2">\1</a>', caption)
     return caption.strip() if caption else None
@@ -105,7 +105,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     reply_to_message_id=topic_id,
                     parse_mode=ParseMode.MARKDOWN,
                     progress=progress_bar,
-                    progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await dm.copy(LOG_GROUP)
                 
@@ -117,7 +117,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     parse_mode=ParseMode.MARKDOWN,
                     progress=progress_bar,
                     reply_to_message_id=topic_id,
-                    progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await dm.copy(LOG_GROUP)
             else:
@@ -129,7 +129,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     reply_to_message_id=topic_id,
                     progress=progress_bar,
                     parse_mode=ParseMode.MARKDOWN,
-                    progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await asyncio.sleep(2)
                 await dm.copy(LOG_GROUP)
@@ -374,7 +374,7 @@ async def get_final_caption(msg, sender):
     if msg.caption:
         original_caption = msg.caption.markdown
     else:
-        original_caption = "Join-@skillwithchiru"
+        original_caption = ""
     
     custom_caption = get_user_caption_preference(sender)
     final_caption = f"{original_caption}\n\n{custom_caption}" if custom_caption else original_caption
@@ -614,7 +614,7 @@ async def send_settings_message(chat_id, user_id):
         [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
         [Button.inline("PDF Wtmrk", b'pdfwt'), Button.inline("Video Wtmrk", b'watermark')],
         [Button.inline("Upload Method", b'uploadmethod')],  # Include the dynamic Fast DL button
-        [Button.url("Report Errors", "https://t.me/team_spy_pro")]
+        [Button.url("Report Errors", "https://t.me/skillwithchiru")]
     ]
 
     await gf.send_file(
@@ -668,7 +668,7 @@ async def callback_query_handler(event):
         await event.respond('Please send the photo you want to set as the thumbnail.')
     
     elif event.data == b'pdfwt':
-        await event.respond("Watermark is Pro+ Plan.. contact @kingofpatal")
+        await event.respond("Watermark is Pro+ Plan.. contact @chiru52")
         return
 
     elif event.data == b'uploadmethod':
@@ -683,7 +683,7 @@ async def callback_query_handler(event):
             [Button.inline(f"Pyrogram v2{pyrogram_check}", b'pyrogram')],
             [Button.inline(f"SpyLib v1 ⚡{telethon_check}", b'telethon')]
         ]
-        await event.edit("Choose your preferred upload method:\n\n__**Note:** **SpyLib ⚡**, built on Telethon(base), by Team SPY still in beta.__", buttons=buttons)
+        await event.edit("Choose your preferred upload method:\n\n__**Note:** **🅲🅷🅸🆁🆄 ⚡**, built on Telethon(base), by Team SPY still in beta.__", buttons=buttons)
 
     elif event.data == b'pyrogram':
         save_user_upload_method(user_id, "Pyrogram")
@@ -691,7 +691,7 @@ async def callback_query_handler(event):
 
     elif event.data == b'telethon':
         save_user_upload_method(user_id, "Telethon")
-        await event.edit("Upload method set to **SpyLib ⚡\n\nThanks for choosing this library as it will help me to analyze the error raise issues on github.** ✅")        
+        await event.edit("Upload method set to ** 🅲🅷🅸🆁🆄⚡\n\nThanks for choosing this library as it will help me to analyze the error raise issues on github.** ✅")        
         
     elif event.data == b'reset':
         try:
@@ -1019,7 +1019,7 @@ def progress_callback(done, total, user_id):
     # Format the final output as needed
     final = (
         f"╭──────────────────╮\n"
-        f"│     **__SpyLib ⚡ Uploader__**       \n"
+        f"│     **__🅲🅷🅸🆁🆄 ⚡ Uploader__**       \n"
         f"├──────────\n"
         f"│ {progress_bar}\n\n"
         f"│ **__Progress:__** {percent:.2f}%\n"
@@ -1082,7 +1082,7 @@ def dl_progress_callback(done, total, user_id):
     # Format the final output as needed
     final = (
         f"╭──────────────────╮\n"
-        f"│     **__SpyLib ⚡ Downloader__**       \n"
+        f"│     **__🅲🅷🅸🆁🆄 ⚡ Downloader__**       \n"
         f"├──────────\n"
         f"│ {progress_bar}\n\n"
         f"│ **__Progress:__** {percent:.2f}%\n"
@@ -1130,7 +1130,7 @@ async def split_and_upload_file(app, sender, target_chat_id, file_path, caption,
             part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
             await app.send_document(target_chat_id, document=part_file, caption=part_caption, reply_to_message_id=topic_id,
                 progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+                progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
             )
             await edit.delete()
             os.remove(part_file)  # Cleanup after upload
