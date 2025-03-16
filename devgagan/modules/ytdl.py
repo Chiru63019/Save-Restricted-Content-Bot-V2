@@ -90,7 +90,7 @@ async def process_audio(client, event, url, cookies_env_var=None):
             temp_cookie_path = temp_cookie_file.name
  
     start_time = time.time()
-    random_filename = f"@team_spy_pro_{event.sender_id}"
+    random_filename = f"@skillwithchiru{event.sender_id}"
     download_path = f"{random_filename}.mp3"
  
     ydl_opts = {
@@ -121,8 +121,8 @@ async def process_audio(client, event, url, cookies_env_var=None):
                 except Exception:
                     pass
                 audio_file.tags["TIT2"] = TIT2(encoding=3, text=title)
-                audio_file.tags["TPE1"] = TPE1(encoding=3, text="Team 🅲🅷🅸🆁🆄")
-                audio_file.tags["COMM"] = COMM(encoding=3, lang="eng", desc="Comment", text="Processed by 🅲🅷🅸🆁🆄")
+                audio_file.tags["TPE1"] = TPE1(encoding=3, text="🅱🅴🅰🆂🆃")
+                audio_file.tags["COMMTea COMM(encoding=3, lang="eng", desc="Comment", text="Processed by 🅱🅴🅰🆂🆃")
  
                 thumbnail_url = info_dict.get('thumbnail')
                 if thumbnail_url:
@@ -143,14 +143,14 @@ async def process_audio(client, event, url, cookies_env_var=None):
         chat_id = event.chat_id
         if os.path.exists(download_path):
             await progress_message.delete()
-            prog = await client.send_message(chat_id, "**__Starting Upload...__**")
+            prog = await client.send_message(chat_id, "**__Starting Upload by 🅱🅴🅰🆂🆃...__**")
             uploaded = await fast_upload(
                 client, download_path, 
                 reply=prog, 
                 name=None,
                 progress_bar_function=lambda done, total: progress_callback(done, total, chat_id)
             )
-            await client.send_file(chat_id, uploaded, caption=f"**{title}**\n\n**__Powered by Team 🅲🅷🅸🆁🆄__**")
+            await client.send_file(chat_id, uploaded, caption=f"**{title}🅱🅴🅰🆂🆃**\n\n**__Powered by Team 🅱🅴🅰🆂🆃__**")
             if prog:
                 await prog.delete()
         else:
@@ -296,7 +296,7 @@ def progress_callback(done, total, user_id):
      
     final = (
         f"╭──────────────────╮\n"
-        f"│        **__Uploading...__**       \n"
+        f"│        **__Uploading by 🅱🅴🅰🆂🆃...__**       \n"
         f"├──────────\n"
         f"│ {progress_bar}\n\n"
         f"│ **__Progress:__** {percent:.2f}%\n"
@@ -304,7 +304,7 @@ def progress_callback(done, total, user_id):
         f"│ **__Speed:__** {speed_mbps:.2f} Mbps\n"
         f"│ **__Time Remaining:__** {remaining_time_min:.2f} min\n"
         f"╰──────────────────╯\n\n"
-        f"**__Powered by 🅲🅷🅸🆁🆄__**"
+        f"**__Powered by 🅱🅴🅰🆂🆃__**"
     )
  
      
@@ -347,15 +347,15 @@ async def process_video(client, event, url, cookies_env_var, check_duration_and_
         'verbose': True,
     }
     prog = None
-    progress_message = await event.reply("**__Starting download...__**")
-    logger.info("Starting the download process...")
+    progress_message = await event.reply("**__Starting download by 🅱🅴🅰🆂🆃...__**")
+    logger.info("Starting the download process by 🅱🅴🅰🆂🆃...")
     try:
         info_dict = await fetch_video_info(url, ydl_opts, progress_message, check_duration_and_size)
         if not info_dict:
             return
          
         await asyncio.to_thread(download_video, url, ydl_opts)
-        title = info_dict.get('title', 'Powered by Team SPY')
+        title = info_dict.get('title', 'Powered by 🅱🅴🅰🆂🆃')
         k = video_metadata(download_path)      
         W = k['width']
         H = k['height']
@@ -383,16 +383,16 @@ async def process_video(client, event, url, cookies_env_var, check_duration_and_
          
         chat_id = event.chat_id
         SIZE = 2 * 1024 * 1024
-        caption = f"{title}"
+        caption = f"{title}🅱🅴🅰🆂🆃"
      
         if os.path.exists(download_path) and os.path.getsize(download_path) > SIZE:
-            prog = await client.send_message(chat_id, "**__Starting Upload...__**")
+            prog = await client.send_message(chat_id, "**__Starting Upload by 🅱🅴🅰🆂🆃...__**")
             await split_and_upload_file(app, chat_id, download_path, caption)
             await prog.delete()
          
         if os.path.exists(download_path):
             await progress_message.delete()
-            prog = await client.send_message(chat_id, "**__Starting Upload...__**")
+            prog = await client.send_message(chat_id, "**__Starting Upload by 🅱🅴🅰🆂🆃...__**")
             uploaded = await fast_upload(
                 client, download_path,
                 reply=prog,
@@ -401,7 +401,7 @@ async def process_video(client, event, url, cookies_env_var, check_duration_and_
             await client.send_file(
                 event.chat_id,
                 uploaded,
-                caption=f"**{title}**",
+                caption=f"**{title}🅱🅴🅰🆂🆃**",
                 attributes=[
                     DocumentAttributeVideo(
                         duration=metadata['duration'],
@@ -455,10 +455,10 @@ async def split_and_upload_file(app, sender, file_path, caption):
 
             # Uploading part
             edit = await app.send_message(sender, f"⬆️ Uploading part {part_number + 1}...")
-            part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
+            part_caption = f"{caption} 🅱🅴🅰🆂🆃\n\n**Part : {part_number + 1}**"
             await app.send_document(sender, document=part_file, caption=part_caption,
                 progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
+                progress_args=("╭─────────────────────╮\n│      **__🅱🅴🅰🆂🆃 Uploader__**\n├─────────────────────", edit, time.time())
             )
             await edit.delete()
             os.remove(part_file)  # Cleanup after upload
