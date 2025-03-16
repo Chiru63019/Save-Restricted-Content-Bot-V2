@@ -63,15 +63,15 @@ async def fetch_upload_method(user_id):
     return user_data.get("upload_method", "Pyrogram") if user_data else "Pyrogram"
 
 async def format_caption_to_html(caption: str) -> str:
-    caption = re.sub(r"^> (.*)", r"<blockquote> \1 </blockquote>", caption, flags=re.MULTILINE)
-    caption = re.sub(r"```(.*?)```", r"<pre> \1 </pre>", caption, flags=re.DOTALL)
-    caption = re.sub(r"`(.*?)`", r"<code> \1 </code>", caption)
-    caption = re.sub(r"\*\*(.*?)\*\*", r"<b> \1 </b>", caption)
-    caption = re.sub(r"\*(.*?)\*", r"<b> \1 </b>", caption)
-    caption = re.sub(r"__(.*?)__", r"<i> \1 </i>", caption)
-    caption = re.sub(r"_(.*?)_", r"<i> \1 </i>", caption)
-    caption = re.sub(r"~~(.*?)~~", r"<s> \1 </s>", caption)
-    caption = re.sub(r"\|\|(.*?)\|\|", r"<details>\1</details>", caption)
+    caption = re.sub(r"^> (.*)", r"<blockquote>\1</blockquote>🅱🅴🅰🆂🆃", caption, flags=re.MULTILINE)
+    caption = re.sub(r"```(.*?)```", r"<pre>\1</pre>🅱🅴🅰🆂🆃", caption, flags=re.DOTALL)
+    caption = re.sub(r"`(.*?)`", r"<code>\1</code>🅱🅴🅰🆂🆃", caption)
+    caption = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>🅱🅴🅰🆂🆃", caption)
+    caption = re.sub(r"\*(.*?)\*", r"<b>\1</b>🅱🅴🅰🆂🆃", caption)
+    caption = re.sub(r"__(.*?)__", r"<i>\1</i>🅱🅴🅰🆂🆃", caption)
+    caption = re.sub(r"_(.*?)_", r"<i>\1</i>🅱🅴🅰🆂🆃", caption)
+    caption = re.sub(r"~~(.*?)~~", r"<s>\1</s>🅱🅴🅰🆂🆃", caption)
+    caption = re.sub(r"\|\|(.*?)\|\|", r"<details>\1</details>🅱🅴🅰🆂🆃", caption)
     caption = re.sub(r"\[(.*?)\]\((.*?)\)", r'<a href="\2">\1</a>', caption)
     return caption.strip() if caption else None
     
@@ -105,7 +105,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     reply_to_message_id=topic_id,
                     parse_mode=ParseMode.MARKDOWN,
                     progress=progress_bar,
-                    progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__🅱🅴🅰🆂🆃 Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await dm.copy(LOG_GROUP)
                 
@@ -117,7 +117,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     parse_mode=ParseMode.MARKDOWN,
                     progress=progress_bar,
                     reply_to_message_id=topic_id,
-                    progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__🅱🅴🅰🆂🆃 Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await dm.copy(LOG_GROUP)
             else:
@@ -129,7 +129,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     reply_to_message_id=topic_id,
                     progress=progress_bar,
                     parse_mode=ParseMode.MARKDOWN,
-                    progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__🅱🅴🅰🆂🆃 Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await asyncio.sleep(2)
                 await dm.copy(LOG_GROUP)
@@ -206,7 +206,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             if chat in saved_channel_ids:
                 await app.edit_message_text(
                     message.chat.id, edit_id,
-                    "Sorry! This channel is protected by **__🅲🅷🅸🆁🆄__**."
+                    "Sorry! This channel is protected by **__🅱🅴🅰🆂🆃__**."
                 )
                 return
             
@@ -267,14 +267,14 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         #     return
 
         file_name = await get_media_filename(msg)
-        edit = await app.edit_message_text(sender, edit_id, "**Downloading...**")
+        edit = await app.edit_message_text(sender, edit_id, "**Downloading by 🅱🅴🅰🆂🆃...**")
 
         # Download media
         file = await userbot.download_media(
             msg,
             file_name=file_name,
             progress=progress_bar,
-            progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", edit, time.time())
+            progress_args=("╭─────────────────────╮\n│      **__Downloading by 🅱🅴🅰🆂🆃__...**\n├─────────────────────", edit, time.time())
         )
         
         caption = await get_final_caption(msg, sender)
@@ -462,7 +462,7 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
             file = await userbot.download_media(
                 msg,
                 progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", edit, time.time())
+                progress_args=("╭─────────────────────╮\n│      **__Downloading by 🅱🅴🅰🆂🆃__...**\n├─────────────────────", edit, time.time())
             )
             file = await rename_file(file, sender)
 
@@ -682,18 +682,18 @@ async def callback_query_handler(event):
 
         # Display the buttons for selecting the upload method
         buttons = [
-            [Button.inline(f"Pyrogram v2{pyrogram_check}", b'pyrogram')],
-            [Button.inline(f"SpyLib v1 ⚡{telethon_check}", b'telethon')]
+            [Button.inline(f"🅱🅴🅰🆂🆃 v2{pyrogram_check}", b'pyrogram')],
+            [Button.inline(f"🅱🅴🅰🆂🆃 v1 ⚡{telethon_check}", b'telethon')]
         ]
-        await event.edit("Choose your preferred upload method:\n\n__**Note:** **🅲🅷🅸🆁🆄 ⚡**, built on Telethon(base), by Team SPY still in beta.__", buttons=buttons)
+        await event.edit("Choose your preferred upload method:\n\n__**Note:** **🅱🅴🅰🆂🆃 ⚡**, built on Telethon(base), by 🅱🅴🅰🆂🆃 still in beta.__", buttons=buttons)
 
     elif event.data == b'pyrogram':
         save_user_upload_method(user_id, "Pyrogram")
-        await event.edit("Upload method set to **Pyrogram** ✅")
+        await event.edit("Upload method set to **🅱🅴🅰🆂🆃 v2** ✅")
 
     elif event.data == b'telethon':
         save_user_upload_method(user_id, "Telethon")
-        await event.edit("Upload method set to ** 🅲🅷🅸🆁🆄⚡\n\nThanks for choosing this library as it will help me to analyze the error raise issues on github.** ✅")        
+        await event.edit("Upload method set to ** 🅱🅴🅰🆂🆃 v1⚡\n\nThanks for choosing this library as it will help me to analyze the error raise issues on github.** ✅")        
         
     elif event.data == b'reset':
         try:
@@ -1021,7 +1021,7 @@ def progress_callback(done, total, user_id):
     # Format the final output as needed
     final = (
         f"╭──────────────────╮\n"
-        f"│     **__🅲🅷🅸🆁🆄 ⚡ Uploader__**       \n"
+        f"│     **__🅱🅴🅰🆂🆃 ⚡ Uploader__**       \n"
         f"├──────────\n"
         f"│ {progress_bar}\n\n"
         f"│ **__Progress:__** {percent:.2f}%\n"
@@ -1029,7 +1029,7 @@ def progress_callback(done, total, user_id):
         f"│ **__Speed:__** {speed_mbps:.2f} Mbps\n"
         f"│ **__ETA:__** {remaining_time_min:.2f} min\n"
         f"╰──────────────────╯\n\n"
-        f"**__Powered by Team 🅲🅷🅸🆁🆄__**"
+        f"**__Powered by 🅱🅴🅰🆂🆃__**"
     )
     
     # Update tracking variables for the user
@@ -1084,7 +1084,7 @@ def dl_progress_callback(done, total, user_id):
     # Format the final output as needed
     final = (
         f"╭──────────────────╮\n"
-        f"│     **__🅲🅷🅸🆁🆄 ⚡ Downloader__**       \n"
+        f"│     **__🅱🅴🅰🆂🆃 ⚡ Downloader__**       \n"
         f"├──────────\n"
         f"│ {progress_bar}\n\n"
         f"│ **__Progress:__** {percent:.2f}%\n"
@@ -1092,7 +1092,7 @@ def dl_progress_callback(done, total, user_id):
         f"│ **__Speed:__** {speed_mbps:.2f} Mbps\n"
         f"│ **__ETA:__** {remaining_time_min:.2f} min\n"
         f"╰──────────────────╯\n\n"
-        f"**__Powered by Team 🅲🅷🅸🆁🆄__**"
+        f"**__Powered by Team 🅱🅴🅰🆂🆃__**"
     )
     
     # Update tracking variables for the user
@@ -1129,10 +1129,10 @@ async def split_and_upload_file(app, sender, target_chat_id, file_path, caption,
 
             # Uploading part
             edit = await app.send_message(target_chat_id, f"⬆️ Uploading part {part_number + 1}...")
-            part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
+            part_caption = f"{caption}🅱🅴🅰🆂🆃 \n\n**Part : {part_number + 1}**"
             await app.send_document(target_chat_id, document=part_file, caption=part_caption, reply_to_message_id=topic_id,
                 progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__🅲🅷🅸🆁🆄 Uploader__**\n├─────────────────────", edit, time.time())
+                progress_args=("╭─────────────────────╮\n│      **__🅱🅴🅰🆂🆃 Uploader__**\n├─────────────────────", edit, time.time())
             )
             await edit.delete()
             os.remove(part_file)  # Cleanup after upload
